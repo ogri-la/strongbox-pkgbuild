@@ -1,30 +1,24 @@
 ### Added
 
-* added another heuristic for guessing which asset in a Github release supports retail.
-    - in this case, if there is a single remaining unclassified asset, and there are other classified assets and nothing has been classified as retail yet, classify that asset as retail.
-        - yes, this is guessing, and it won't always be correct, but it's probably true most of the time.
-    - thanks @jake770321
-* error handling for a few cases where uncaught exceptions were being swallowed.
+* support for classic Mists of Pandaria
+* support for 'Standard' suffixed .toc file (retail)
+* added 'clean' to manage.sh script to remove any temporary files
+* added 'build-docker' to manage.sh script to run the tests in an environment similar to CI
 
 ### Changed
 
-* installing an addon by file now overwrites/updates ignored addons and unpins pinned addons.
-    - this accommodates a use case where Strongbox is used to install a select few addons manually from unsupported sources (like Curseforge) but then the new addons match against older versions in the catalogue from wowi.
-    - please open a feature request if you want this behaviour adjustable.
-* updated internal constants for The War Within.
-* updated internal constant for the date of the previous expansion.
-    - affects how much the emergency 'short' catalogue gets truncated from the 'full' catalogue.
-        - emergency catalogue is used when Github hosted catalogue is unavailable, which is rare.
-* trimmed the '(Flatpak)' from the 'Strongbox (Flatpak)' on the `.desktop` files distributed by Flatpak.
-    - thanks @deadmeu
+* bumped versions of latest WoW releases
+* minimum version of JDK bumped from 11 to 17 to incorporate bug fixes in newer releases of OpenJFX 22
+* bumped dependencies in general
+* changes to CI to move off of legacy/unsupported container images
 
 ### Fixed
 
-* fixed bug in emergency 'short' catalogue generation.
-    - it would include addons from BFA instead of stopping at Shadowlands.
-* fixed bug where installing a file manually would bypass ignored and pinned addon checks.
-    - it would tell you it was refusing to install, then install it anyway.
-    - thanks @akanouras
-* fixed bug where ignore check bypassed on ungrouped/single directory addons.
-    - logic assumed all addons were grouped, but grouping only happens when an addon unzip to multiple directories.
-    - pretty big bug!
+* issue #440 "JNI error when launching on Endeavouros"
+    - thanks to @FourRand0m for reporting this
+* issue #441 "Crash on new Mac OS and JRE install"
+    - thanks to @ffolkes for reporting this
+
+### Removed
+
+* some old Docker containers used for debugging CI
